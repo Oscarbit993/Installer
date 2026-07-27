@@ -6,11 +6,11 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 echo "Bienvenido al script de instalacion para Archlinux, este script iniciara servicios, añadira repositorios, instalara herramientas, etcetera..."
-sleep 3
-echo "Ingresa tu contraseña (No se te pedira mas adelante) para iniciar la instalacion al instante"
-sudo -v
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-KEEPALIVE_PID=$!
+sleep 1
+#echo "Ingresa tu contraseña (No se te pedira mas adelante) para iniciar la instalacion al instante"
+#sudo -v
+#while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+#KEEPALIVE_PID=$!
 
 main_all(){
 sudo pacman -Syu --noconfirm
@@ -19,7 +19,7 @@ chmod +x strap.sh
 sudo ./strap.sh
 rm -rf strap.sh
 sudo pacman -Syu --noconfirm
-sudo pacman -S --needed --noconfirm git neovim fzf bat base-devel firefox hyprland nerd-fonts zsh wget torbrowser-launcher flatpak kitty unzip starship btop htop openvpn man yazi bluez bluez-utils elogind dbus networkmanager rofi nautilus mako hyprshot fastfetch pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber playerctl spotify-launcher awww blueman nmap burpsuite openssh wireshark-qt whatweb tmux python
+sudo pacman -S --needed --noconfirm git neovim fzf bat base-devel firefox hyprland nerd-fonts zsh wget torbrowser-launcher flatpak kitty unzip starship btop htop openvpn yazi bluez bluez-utils networkmanager rofi nautilus mako hyprshot fastfetch pipewire pipewire-alsa pipewire-pulse pipewire-jack wireplumber playerctl spotify-launcher awww blueman nmap burpsuite openssh wireshark-qt whatweb tmux python
 mkdir -p ~/Wallpapers ~/Descargas ~/Proyectos ~/Escuela ~/Proyectos/Python ~/Proyectos/Bash ~/.config/hypr
 curl -L -o $HOME/Wallpapers/Wall-1.png https://w.wallhaven.cc/full/k8/wallhaven-k82p6d.png
 curl -L -o $HOME/Wallpapers/Wall-2.png https://w.wallhaven.cc/full/w5/wallhaven-w5m62x.png
@@ -44,6 +44,7 @@ cd ..
 rm -rf paru
 RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }
+
 main_all
 chsh -s "$(which zsh)"
 echo "A finalizado el script, "
